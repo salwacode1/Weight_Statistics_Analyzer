@@ -1,0 +1,57 @@
+import java.util.Scanner;
+public class WeightStatisticsAnalyzer {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("How many people? ");
+        int num = input.nextInt();
+        double[] weight = new double[num];
+        double sum = 0;
+        double biggest = 0;
+        double smallest = 0;
+        int under = 0;
+        int normal = 0;
+        int over = 0;
+        for (int i = 0; i < num; i++) {
+            System.out.print("Enter weight for member " + (i + 1) + ": ");
+            weight[i] = input.nextDouble();
+            sum = sum + weight[i];
+            if (i == 0) {
+                biggest = weight[i];
+                smallest = weight[i];
+            }
+            if (weight[i] > biggest) {
+                biggest = weight[i];
+            }
+            if (weight[i] < smallest) {
+                smallest = weight[i];
+            }
+            if (weight[i] < 50) {
+                under++;
+            } else if (weight[i] >= 50 && weight[i] <= 80) {
+                normal++;
+            } else {
+                over++;
+            }
+        }
+        double average = sum / num;
+        System.out.println("Average weight = " + average);
+        System.out.println("Highest weight = " + biggest);
+        System.out.println("Lowest weight = " + smallest);
+        System.out.println("Underweight people = " + under);
+        System.out.println("Normal people = " + normal);
+        System.out.println("Overweight people = " + over);
+        for (int i = 0; i < num; i++) {
+            char category;
+            if (weight[i] >= 90) {
+                category = 'A';
+            } else if (weight[i] >= 75) {
+                category = 'B';
+            } else if (weight[i] >= 60) {
+                category = 'C';
+            } else {
+                category = 'D';
+            }
+            System.out.println("Member " + (i + 1) + " (Weight: " + weight[i] + ") - Category: " + category);
+        }
+    }
+}
